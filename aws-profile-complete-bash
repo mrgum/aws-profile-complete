@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+_awsprofile_completions()
+{
+  COMPREPLY=($(compgen -W "$(cat ~/.aws/config | grep '\[profile' | sed -n 's/\[profile \(.*\).*\]/\1/p')" -- "${COMP_WORDS[1]}"))
+}
+
+complete -F _awsprofile_completions aws-profile
